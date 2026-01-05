@@ -1,32 +1,36 @@
 .calendar {
-  height: $cell-height;
   width: $cell-width;
   display: flex;
   flex-wrap: wrap;
   gap: $gap;
+  padding: 0 $padding;
 
-  @for $i from 1 through 31 {
-    &__day {
-      display: flex;
-      box-sizing: border-box;
-      height: $square-side;
-      width: $square-side;
+  &__day {
 
-      border: 1px solid black;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      background-color: $main-color;
 
-      &::before {
-        content: '#{$i}';
-      }
+    display: flex;
+    box-sizing: border-box;
+    height: $square-side;
+    width: $square-side;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    background-color: $main-color;
+
       &:hover {
         background-color: #ffbfcb;
         cursor: pointer;
         transform: translateY($hover_transform_value);
         transition: all $hover_animation_duration ease;
       }
+
+    @for $i from 1 through 31 {
+        &::before:nth-child(n) {
+            content: '#{$i}';
+        }
+      }
     }
   }
-}
+
+
