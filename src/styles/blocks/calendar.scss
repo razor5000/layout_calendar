@@ -1,0 +1,41 @@
+.calendar {
+  margin: auto;
+  height: 500px;
+  width: 706px;
+  display: flex;
+  flex-flow: row-reverse wrap-reverse;
+  gap: 1px;
+  padding: 10px;
+
+
+  &__day {
+    @for $i from 1 through 31 {
+      &#{$i} {
+        display: flex;
+        box-sizing: border-box;
+        height: 100px;
+        width: 100px;
+
+        .day {
+          display: flex;
+          border: 1px solid black;
+          justify-content: center;
+          align-items: center;
+          flex-grow: 1;
+          background-color: $main-color;
+
+          &::before {
+            content: '#{32 - $i}';
+          }
+          &:hover {
+            background-color: #ffbfcb;
+            cursor: pointer;
+            transform: translateY(-20px); 
+            transition: all 500ms ease;
+          }
+        }
+      }
+    }
+  }
+}
+
