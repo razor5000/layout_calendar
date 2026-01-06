@@ -13,7 +13,6 @@
     border: 1px solid black;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
     background-color: $main-color;
 
     &:hover {
@@ -31,7 +30,18 @@
       }
     }
 
-    @each $day in $start-days {
+
+  }
+
+  @for $i from 1 through 31 {
+    &--holiday-#{$i} {
+      .calendar__day:nth-child(#{$i}) {
+        background-color: blue;
+      }
+    }
+  }
+
+  @each $day in $start-days {
       &--start-#{$day} {
         .calendar__day:first-child {
         margin-left: ($square-side + $gap) * ($day - 1);
@@ -39,12 +49,11 @@
       }
     }
 
-    @for $n from 28 through 31 {
-      &--length-#{$n} {
-        .calendar__day:nth-child(n + #{$n + 1}) {
+    @for $i from 28 through 31 {
+      &--length-#{$i} {
+        .calendar__day:nth-child(n + #{$i + 1}) {
           display: none;
         }
       }
     }
-  }
 }
