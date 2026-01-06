@@ -6,8 +6,6 @@
   padding: 0 $padding;
 
   &__day {
-
-
     display: flex;
     box-sizing: border-box;
     height: $square-side;
@@ -18,19 +16,35 @@
     flex-grow: 1;
     background-color: $main-color;
 
-      &:hover {
-        background-color: #ffbfcb;
-        cursor: pointer;
-        transform: translateY($hover_transform_value);
-        transition: all $hover_animation_duration ease;
-      }
+    &:hover {
+      background-color: #ffbfcb;
+      cursor: pointer;
+      transform: translateY($hover_transform_value);
+      transition: all $hover_animation_duration ease;
+    }
 
     @for $i from 1 through 31 {
-        &::before:nth-child(n) {
-            content: '#{$i}';
+      &:nth-child(#{$i}) {
+        &::before {
+          content: '#{$i}';
+        }
+      }
+    }
+
+    @each $day in $start-days {
+      &--start-#{$day} {
+        .calendar__day:first-child {
+        margin-left: ($square-side + $gap) * ($day - 1);
+        }
+      }
+    }
+
+    @for $n from 28 through 31 {
+      &--length-#{$n} {
+        .calendar__day:nth-child(n + #{$n + 1}) {
+          display: none;
         }
       }
     }
   }
-
-
+}
